@@ -36,10 +36,13 @@ class AuthRemoteDataSrcImp implements AuthenticationRemoteDataSource {
       final response = await _client.post(
         Uri.https(kBaseUrl, kCreateUserEndpoint),
         body: jsonEncode({
-          'createdAt': 'createdAt',
-          'name': 'name',
-          'avatar': 'avatar',
+          'createdAt': createdAt,
+          'name': name,
+          'avatar': avatar,
         }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
